@@ -1,4 +1,4 @@
-<!-- <svelte:options tag="xq-qrcode" /> -->
+<svelte:options tag="xq-qrcode" />
 <script>
   import { onMount } from 'svelte';
 	
