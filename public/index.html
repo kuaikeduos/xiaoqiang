@@ -12,7 +12,14 @@
 	<script defer type="module" src='/build/bundle.js'></script> 
 </head>
 <body>
-		<xq-qrcode code_value="http://www.baidu.com" square_size=200></xq-qrcode>
-		<xq-qrcode code_value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" square_size=200></xq-qrcode>
+		<xq-qrcode class='qrcode' value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" size=200></xq-qrcode>
+		<div class='qrcode'>
+				<xq-qrcode value="http://www.baidu.com" size=200></xq-qrcode>
+		</div>
+		<style>
+			.qrcode {
+				margin-top: 32px;
+			}
+		</style>
 </body>
 </html>

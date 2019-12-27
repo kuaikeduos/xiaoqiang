@@ -7,8 +7,8 @@
 	// js 变量名不能是 x-y 的形式的
 	// 所以只能用下划线的形式了
 	// 不过采用的web component attribute 是中划线的
-	export let code_value;
-	export let square_size; 
+	export let value;
+	export let size; 
 	
 	let qrcode;
 	let qrcodeBind;
@@ -22,7 +22,7 @@
 		}
 
 		let script = document.createElement('script');
-		script.src = "//static-1252921496.costj.myqcloud.com/third-party/qrcode.min.js"
+		script.src = "//cdn.kuaizhan.com/pub/static/common/qrcode.min.js"
 		if (qrcodeBind) {
 			qrcodeBind.append(script);
 		}
@@ -35,9 +35,9 @@
 	onMount(() => {
 		loadQrcodeSourceJs(function() {
 			qrcode = new QRCode(qrcodeBind, {
-				text: code_value,
-				width: square_size,
-				height: square_size,
+				text: value,
+				width: size,
+				height: size,
 				colorDark : "#000000",
 				colorLight : "#ffffff",
 				correctLevel : QRCode.CorrectLevel.H
@@ -47,15 +47,9 @@
 </script>
 
 <style>
-  .qrcode {
-    width: 200px;
-    height: 200x;
-    margin-top:15px;
-  }
 </style>
 
 <div
 	bind:this={qrcodeBind}
-	class="qrcode"
 >
 </div>
