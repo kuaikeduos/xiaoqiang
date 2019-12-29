@@ -8,16 +8,36 @@
 	// 所以只能用下划线的形式了
 	// 不过采用的web component attribute 是中划线的
 	export let value;
-	export let size; 
+	export let size;
+	export let color = '#000000';
 	
 	let qrcode;
 	let qrcodeBind;
+	let qrcodeWrapBind;
+
+	export function getQrcodeUrl() {
+		return qrcodeWrapBind.querySelector('img').src;
+	}
 	
 	function loadQrcodeSourceJs(callback) {
 
 		if (window.QRCode) {
 			console.log('qrcode already load')
-			callback()
+			setTimeout(function() {
+				// hack
+				/**
+				 * 对测试用例
+				  function createQrcode() {
+				    q = document.createElement('xq-qrcode')
+				 	  q.value = 'xx'
+				 	  q.size = '20'
+				 	  document.body.appendChild(q)
+					}
+					createQrcode()
+					createQrcode() // 放到 setTimeout 第二个才正常
+				 */
+				callback()
+			}, 0)
 			return
 		}
 
@@ -38,18 +58,39 @@
 				text: value,
 				width: size,
 				height: size,
-				colorDark : "#000000",
+				colorDark : color,
 				colorLight : "#ffffff",
 				correctLevel : QRCode.CorrectLevel.H
-			});		
+			});
+
+			// 虽然qrcode自己默认会创建一个img标签
+			// 但是不知道为什么就是无法长按保存，故还是自己从canvas生成一张
+			function qrcodeImgFix() {
+				var canvas = qrcodeWrapBind.getElementsByTagName('canvas')[0];
+				var img = convertCanvasToImage(canvas);
+				qrcodeWrapBind.append(img);
+				function convertCanvasToImage(canvas) {  
+					var image = new Image();  
+					image.src = canvas.toDataURL("image/png");
+					return image;  
+				}
+			}
+			qrcodeImgFix()
 		});
 	});
 </script>
 
 <style>
+	/* 隐藏 qrcode 自己创建的图片 */
+	main div {
+		display: none;
+	}
 </style>
 
-<div
-	bind:this={qrcodeBind}
+<main
+	bind:this={qrcodeWrapBind}
 >
-</div>
+	<div
+		bind:this={qrcodeBind}
+	></div>
+</main>
