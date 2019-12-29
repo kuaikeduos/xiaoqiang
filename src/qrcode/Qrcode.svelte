@@ -72,6 +72,7 @@
 				function convertCanvasToImage(canvas) {  
 					var image = new Image();  
 					image.src = canvas.toDataURL("image/png");
+					image.style = 'width:100%';
 					return image;  
 				}
 			}
@@ -84,6 +85,9 @@
 	/* 隐藏 qrcode 自己创建的图片 */
 	main div {
 		display: none;
+	}
+	main {
+		display: inline-block;
 	}
 </style>
 
