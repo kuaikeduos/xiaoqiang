@@ -52,7 +52,15 @@
 		}
 	}
 
+	let isRendering = false
 	function renderQrcode(value, size, color) {
+		console.log(isRendering)
+
+		if (isRendering) {
+			return
+		}
+
+		isRendering = true
 
 		loadQrcodeSourceJs(function() {
 
@@ -89,15 +97,19 @@
 				}
 			}
 			qrcodeImgFix()
+
+			setTimeout(function() {
+				isRendering = false
+			}, 0)
 		});
 	}
 			
-	onMount(() => {
-		renderQrcode(value, size, color)
-	});
+	// onMount(() => {
+	// 	renderQrcode(value, size, color)
+	// });
 
 	// value size color 变化触发重新渲染
-	$: {
+	$: if (value && size && color) {
 		renderQrcode(value, size, color)
 	}
 
