@@ -1,6 +1,6 @@
 <svelte:options tag="xq-qrcode" />
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate, beforeUpdate } from 'svelte';
 	
 	// 有个尴尬的问题
 	// web component 的 attribute 不能出现大写字母
@@ -51,9 +51,21 @@
 			callback()
 		}
 	}
-			
-	onMount(() => {
+
+	function renderQrcode(value, size, color) {
+
 		loadQrcodeSourceJs(function() {
+
+			/* 清楚第一次创建留下来的脏节点 */
+			function clearQrcodeEnv() {
+				if (qrcodeBind.querySelector('canvas')) {
+					qrcodeBind.querySelector('canvas').remove()
+					qrcodeBind.querySelector('img').remove()
+					qrcodeWrapBind.querySelector('img').remove()
+				}
+			}
+			clearQrcodeEnv()
+
 			qrcode = new QRCode(qrcodeBind, {
 				text: value,
 				width: size,
@@ -78,7 +90,17 @@
 			}
 			qrcodeImgFix()
 		});
+	}
+			
+	onMount(() => {
+		renderQrcode(value, size, color)
 	});
+
+	// value size color 变化触发重新渲染
+	$: {
+		renderQrcode(value, size, color)
+	}
+
 </script>
 
 <style>

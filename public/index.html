@@ -12,17 +12,29 @@
 	<script defer src='/build/bundle.js?18989909'></script> 
 </head>
 <body>
-		<xq-qrcode
+		<!-- <xq-qrcode
 			color='yellow'
 			class='qrcode'
-			value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" size=200></xq-qrcode>
+			value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" size=200></xq-qrcode> -->
 		<div class='qrcode'>
-				<xq-qrcode value="https://passport.kuaizhan.com/main/login/wx-scan-login?payload=eyJzaXRlX2lkIjogNTMwNjY0OTQ1MSwgImlkIjogIjE2MjY5MTU0NTg5YzRiZGQ5MDMzYzQ4NWY1M2Y4NmM2In0=" size=200></xq-qrcode>
+				<xq-qrcode id="async-change" value="xxxx" size=110></xq-qrcode>
 		</div>
 		<style>
 			.qrcode {
 				margin-top: 32px;
 			}
 		</style>
+		<script>
+
+				// TODO a bug attributeChangedCallback
+				// attributeChangedCallback(attrName, oldVal, newVal) {
+        //     console.log(`attributeChangedCallback-change ${attrName} from ${oldVal} to ${newVal}`)
+        // }
+				setTimeout(function() {
+					// document.querySelector('#async-change').setAttribute('value', 'https://passport.kuaizhan.com/main/login/wx-scan-login?payload=eyJzaXRlX2lkIjogNTMwNjY0OTQ1MSwgImlkIjogIjE2MjY5MTU0NTg5YzRiZGQ5MDMzYzQ4NWY1M2Y4NmM2In0=')
+					document.querySelector('#async-change').setAttribute('color', 'blue')
+				}, 2000)
+
+		</script>
 </body>
 </html>
