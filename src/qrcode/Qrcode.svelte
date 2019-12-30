@@ -60,7 +60,7 @@
 				height: size,
 				colorDark : color,
 				colorLight : "#ffffff",
-				correctLevel : QRCode.CorrectLevel.H
+				correctLevel : QRCode.CorrectLevel.M
 			});
 
 			// 虽然qrcode自己默认会创建一个img标签
