@@ -2,10 +2,6 @@
   import Cube from './Cube.svelte';
   const clsPrefix = 'suspend-wiki';
   const consultPrefix = 'suspend-wiki__consult';
-
-  function handleOpenQuestionnaire() {
-    window.open('https://www.wjx.cn/jq/52712468.aspx','')
-  }
 </script>
 
 <main>
@@ -43,12 +39,6 @@
         ></path>
       </svg>
     </Cube>
-    <img 
-      class="questionnaire-img"
-      src="https://pic.kuaizhan.com/g3/80/c2/240e-3ab3-442f-b92a-dc299a261a9243"
-      alt="用户调研"
-      on:click={handleOpenQuestionnaire}
-    />
   </div>
 
 </main>
@@ -94,12 +84,5 @@
     border-top: 1px solid #E1E1E1;
     width: 100%;
     text-align: center;
-  }
-
-  .questionnaire-img {
-    width: 180px;
-    margin-right: -10px;
-    margin-top: 3px;
-    cursor: pointer;
   }
 </style>
