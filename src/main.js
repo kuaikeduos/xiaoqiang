@@ -1,9 +1,9 @@
-import './qrcode/index';
+// import './qrcode/index';
 
-// import Qrcode from './qrcode/Qrcode.svelte';
+import App from './suspend-wiki/App.svelte';
 
-// const app = new App({
-// 	target: document.body
-// });
+const app = new App({
+	target: document.body
+});
 
-// export default app;
+export default app;
