@@ -3,6 +3,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import postcss from 'rollup-plugin-postcss';
+import typescript from "rollup-plugin-typescript2";
+
+const svelteOptions = require("./svelte.config");
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -14,6 +18,10 @@ const moduleConfig = {
 	'qrcode': {
 		alais: 'b',
 		customElement: true
+	},
+	'login-register': {
+		alais: 'c',
+		customElement: false
 	}, 	
 }
 
@@ -21,15 +29,16 @@ const mod = process.argv.slice(-1)[0].slice(2);
 console.log(mod, 'module')
 
 export default {
-	input: `src/${mod}/main.js`,
+	input: `src/${mod}/main.ts`,
 	output: {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: `public/build/${mod}.js`
+		file: `public/build/${production ? mod : 'bundle'}.js`
 	},
 	plugins: [
 		svelte({
+			...svelteOptions,
 			// enable run-time checks when not in production
 			dev: !production,
 			customElement: moduleConfig[mod].customElement,
@@ -38,7 +47,20 @@ export default {
 			// css: css => {
 			// 	css.write('public/build/bundle.css');
 			// }
+			
 		}),
+    postcss({
+      extract: true,
+      minimize: true,
+      use: [
+        ['sass', {
+          includePaths: [
+            './theme',
+            './node_modules'
+          ]
+        }]
+      ]
+    }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -50,6 +72,7 @@ export default {
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
+		typescript(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

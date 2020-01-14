@@ -9,7 +9,7 @@
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
-	<script defer src='/build/bundle.js?18989909'></script> 
+	<script src='/build/bundle.js'></script> 
 </head>
 <body>
 		<!-- <xq-qrcode
@@ -35,6 +35,14 @@
 					document.querySelector('#async-change').setAttribute('color', 'blue')
 				}, 2000)
 
+		</script>
+
+		<script>
+			window.xqui.login({
+				logo: '//cdn.aiduoka.com/fe-ecshop/static/media/logo.18f014bd.png',
+				useEmail: true,
+				usePhone: true
+			})
 		</script>
 </body>
 </html>

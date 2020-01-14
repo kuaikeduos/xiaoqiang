@@ -45,3 +45,7 @@ import '@kuaizhan/xq/qrcode'
 import '@kuaizhan/xq/suspend-wiki'
 ```
 
+## smui
+
+- [svelte-material-ui](https://github.com/hperrin/svelte-material-ui)
+- [smui-example-rollup]https://github.com/hperrin/smui-example-rollup
