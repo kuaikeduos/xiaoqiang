@@ -1,7 +1,6 @@
 import Qrcode from './Qrcode.svelte';
 
 // TODO 将web component中划线形式的attribute转成驼峰
-
 // let defineElement = function(elementName, element) {
 //   if (!window.customElements.get(elementName)) {
 //     window.customElements.define(elementName, element);
@@ -14,4 +13,4 @@ import Qrcode from './Qrcode.svelte';
 //   }
 // })
 
-export default Qrcode
+export default Qrcode;

@@ -6,19 +6,33 @@ import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
+const moduleConfig = {
+	'suspend-wiki': {
+		alais: 'a',
+		customElement: false
+	},
+	'qrcode': {
+		alais: 'b',
+		customElement: true
+	}, 	
+}
+
+const mod = process.argv.slice(-1)[0].slice(2);
+console.log(mod, 'module')
+
 export default {
-	input: 'src/main.js',
+	input: `src/${mod}/main.js`,
 	output: {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: `public/build/${mod}.js`
 	},
 	plugins: [
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
-			// customElement: true,
+			customElement: moduleConfig[mod].customElement,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			// css: css => {

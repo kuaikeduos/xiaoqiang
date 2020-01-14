@@ -2,8 +2,8 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup -c $MODULE",
+    "dev": "rollup -c -w $MODULE",
     "start": "sirv public"
   },
   "devDependencies": {
