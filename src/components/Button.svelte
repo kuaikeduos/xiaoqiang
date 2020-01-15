@@ -1,6 +1,6 @@
 <script lang="ts">
 </script>
 
-<button>
+<button on:click>
   <slot></slot>
 </button>

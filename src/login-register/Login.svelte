@@ -3,6 +3,7 @@
   import Col from '../components/Col.svelte';
   import TextField from '../components/TextField.svelte';
   import Button from '../components/Button.svelte';
+  import Checkbox from '../components/Checkbox.svelte';
   import { LoginProps } from './interface.ts';
 
   export let useEmail: LoginProps['useEmail'];
@@ -15,6 +16,7 @@
 
   function handleLogin() {
     console.log(account, password, isRemember)
+    isRemember = false
   }
 
   const accountLabel = useEmail ? '手机号/邮箱' : '手机号';
@@ -33,6 +35,7 @@
   />
   <Row>
     <Col span={12}>
+      <Checkbox bind:checked={isRemember} />
       <span slot="label">记住我</span>
     </Col>
     <Col span={12}>
