@@ -24,28 +24,30 @@
 
 <div class="login-action">
   <TextField
-    bind:value={account}
+    value={account}
     label={accountLabel}
+    onInput={(value) => { account = value }}
   />
   <br />
   <TextField
-    bind:value={password}
+    value={password}
     label="密码"
     type="password"
+    onInput={(value) => { password = value }}
   />
-  <Row>
+  <br />
+  <Row style='margin-bottom: 7px;'>
     <Col span={12}>
-      <Checkbox bind:checked={isRemember} />
-      <span slot="label">记住我</span>
+      <Checkbox bind:checked={isRemember} label='记住我' />
     </Col>
     <Col span={12}>
-      <a on:click={onForgetPwd} href="javascript:void();" class="login__forget">忘记密码</a>
+      <a on:click={onForgetPwd} href="javascript:void();" class="login__forget">忘记密码?</a>
     </Col>
   </Row>
-  <Button variant="raised" on:click={handleLogin}>
+  <Button theme='primary' on:click={handleLogin}>
     立即登录
   </Button>
-  <Button variant="outlined" on:click={onRegister}>
+  <Button on:click={onRegister}>
     马上注册
   </Button>
 </div>
@@ -60,7 +62,8 @@
 
 .login__forget {
   text-align:right;
-  cursor: pointer;
-  text-decoration: none;
+  text-decoration: underline;
+  color: #A3A3A3;
 }
+
 </style>

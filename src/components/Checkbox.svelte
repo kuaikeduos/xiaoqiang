@@ -1,24 +1,31 @@
 <script lang="ts">
   let uninitializedValue = () => {};
   export let checked: boolean = uninitializedValue;
-
+  export let label: string = '';
   function handleChage() {
     checked = !checked
   }
 </script>
 
-<span
-  on:click={handleChage}
-  class={`xq-checkbox ${checked ? 'xq-checkbox-checked' : ''}`}
->
-  <input
-    type=checkbox
-    class="xq-checkbox-input"
-  />
-  <span class="xq-checkbox-inner"></span>
-</span>
+<div class='xq-checkbox-wrapper'>
+  <span
+    on:click={handleChage}
+    class={`xq-checkbox ${checked ? 'xq-checkbox-checked' : ''}`}
+  >
+    <input
+      type=checkbox
+      class="xq-checkbox-input"
+    />
+    <span class="xq-checkbox-inner"></span>
+  </span>
+  <slot name='label'>{label}</slot> 
+</div>
 
 <style>
+.xq-checkbox-wrapper {
+  display: inline-block;
+}
+
 .xq-checkbox {
     box-sizing: border-box;
     margin: 0;
@@ -64,8 +71,8 @@
   transition: all .3s;
 }
 .xq-checkbox-checked .xq-checkbox-inner {
-  background-color: #1890ff;
-  border-color: #1890ff;
+  background-color: #115BE8;
+  border-color: #115BE8;
 }
 
 .xq-checkbox-checked .xq-checkbox-inner:after {
