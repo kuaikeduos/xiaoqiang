@@ -8,8 +8,8 @@
   import { LoginProps } from './interface.ts';
 
   export let useEmail: LoginProps['useEmail'];
+  export let type: 'register' | 'forget-pwd' = 'register'
   export let onLogin = () => {};
-  export let onRegister = () => {};
 
   let account: string = '';
   let verificationCode: string = '';
@@ -19,6 +19,11 @@
 
   function handleRadioChange(value) {
     selected = value
+  }
+
+  function handleRegister() {
+    console.log(account, verificationCode, creatPassword, confirmPassword)
+
   }
 
 </script>
@@ -65,7 +70,7 @@
       <span class="agree-contract" slot='label'>我同意<a href="/">《畅盈服务协议》</a></span>
     </Checkbox>
   </Row>
-  <Button theme='primary' on:click={onRegister}>
+  <Button theme='primary' on:click={handleRegister}>
     马上注册
   </Button>
   <Button on:click={onLogin}>

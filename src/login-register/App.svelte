@@ -24,6 +24,8 @@
 </script>
 
 <main class="login-box">
+  <section class="login-box__header">
+  </section>
   {#if logo}
     <section class="login-logo">
       <img src={logo} alt="logo" />
