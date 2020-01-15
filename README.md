@@ -45,7 +45,13 @@ import '@kuaizhan/xq/qrcode'
 import '@kuaizhan/xq/suspend-wiki'
 ```
 
-## smui
+## smui(弃用)
 
 - [svelte-material-ui](https://github.com/hperrin/svelte-material-ui)
-- [smui-example-rollup]https://github.com/hperrin/smui-example-rollup
+- [smui-example-rollup](https://github.com/hperrin/smui-example-rollup)
+
+textfield/button/checkbox 三个一用就是110kb，吓死人, 我们不需要那么丰富的样式, 参考写即可
+
+## 每个不能超过50kb
+
+项目性质决定对性能的要求比较高，牺牲功能性

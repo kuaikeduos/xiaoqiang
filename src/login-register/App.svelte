@@ -25,7 +25,6 @@
   {/if}
   {#if _action === 'login'}
     <Login
-      logo={logo}
       useEmail={useEmail}
       onForgetPwd={handleForgetPwd}
       onRegister={handleRegister}
