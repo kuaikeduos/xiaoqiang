@@ -6,26 +6,123 @@
   import Checkbox from '../components/Checkbox.svelte';
   import Radio from '../components/Radio.svelte';
   import { LoginProps } from './interface.ts';
+  import slideCaptcha from '../utils/slideCaptcha';
+  import request from '../utils/request';
+  import { SEND_CAPTCHA_MESSAGE } from '../constants/constant';
+  import { joinParamsToUrl} from '../utils/tools'
 
   export let useEmail: LoginProps['useEmail'];
   export let type: 'register' | 'forget-pwd' = 'register'
   export let onLogin = () => {};
+  export let requestRegister = () => {};
+  export let requestResetPwd = () => {};
 
   let account: string = '';
   let verificationCode: string = '';
-  let creatPassword: string = '';
+  let createPassword: string = '';
   let confirmPassword: string = ''; 
   let selected = 'phone';
+  let isAgreeContract = true;
 
+  // 选择手机或邮箱
   function handleRadioChange(value) {
     selected = value
   }
+  
+  // 注册前校验
+  function checkAll() {
+    if (!account) {
+      alert('请输入手机号')
+      return false;
+    }
+    if (selected === 'phone' && !verificationCode) {
+      alert('请输入验证码')
+      return false;
+    }
+    if (!createPassword) {
+      alert('请创建密码')
+      return false;
+    }
+    if (!confirmPassword) {
+      alert('请确认密码')
+      return false;
+    }
+    if (!checkPasswords) {
+      return false;
+    }
 
-  function handleRegister() {
-    console.log(account, verificationCode, creatPassword, confirmPassword)
-
+    return true;
   }
 
+  // 校验手机号
+  function checkphone(value) {
+    if (value.length !== 11) {
+      alert('请输入11位手机号')
+    }
+  }
+
+  // 校验两次密码是否一致
+  function checkPasswords() {
+    if (!confirmPassword) {
+      return;
+    }
+    if (confirmPassword !== createPassword) {
+      alert('两次输入密码不一致')
+      return false;
+    }
+    return true;
+  }
+
+  // 点击注册
+  function handleRegister() {
+    const isOk = checkAll()
+    if (!isOk) {
+      return
+    } 
+    console.log(account, verificationCode, createPassword, confirmPassword)
+    requestRegister({
+      account, 
+      verificationCode, 
+      createPassword, 
+      confirmPassword,
+      type: selected
+    });
+  }
+
+  // 点击重设密码
+  function handleResetPwd() {
+    requestResetPwd({
+      account, 
+      verificationCode, 
+      createPassword, 
+      confirmPassword,
+      type: selected
+    })
+  }
+
+  // 获取验证码
+  function handleGetVeriCode() {
+    if (!account) {
+      alert('请输入手机号')
+      return;
+    }
+
+    slideCaptcha(async (ticket) => {
+      console.log('success')
+      const url = joinParamsToUrl(SEND_CAPTCHA_MESSAGE, {
+        isCheckTicket: true,
+        phone: account,
+        templateId: 1001,
+        ticket,	
+        bizType: 'AIDUOKA_DISTRIBUTION_WITHDROW'
+      })
+      request(url, {
+        method: 'GET',
+      }).then(res => {
+        console.log(res)
+      })
+    })
+  }
 </script>
 
 <div class="register-action">
@@ -48,12 +145,16 @@
       label="验证码"
       span="16"
     >
-      <div slot="opt" style="padding-left: 6px;"><Button theme="default-bordered">获取验证码</Button></div>
+      <div slot="opt" style="padding-left: 6px;">
+        <Button theme="default-bordered" on:click={handleGetVeriCode}>获取验证码</Button>
+      </div>
     </TextField>
   {/if}
+  {#if type === 'register' || (type === 'forget-pwd' && selected === 'phone')}
   <TextField
-    value={creatPassword}
-    onInput={(value) => { creatPassword = value }}
+    value={createPassword}
+    onInput={(value) => { createPassword = value }}
+    onBlur={checkPasswords}
     label='创建密码'
     type="password"
     placeholder='请输入密码'
@@ -61,18 +162,27 @@
   <TextField
     value={confirmPassword}
     onInput={(value) => { confirmPassword = value }}
+    onBlur={checkPasswords}
     label='确认密码'
     type="password"
     placeholder='请输入密码'
   />
-  <Row style='margin-bottom: 7px;'>
-    <Checkbox>
-      <span class="agree-contract" slot='label'>我同意<a href="/">《畅盈服务协议》</a></span>
-    </Checkbox>
-  </Row>
-  <Button theme='primary' on:click={handleRegister}>
-    马上注册
-  </Button>
+  {/if}
+  {#if type === 'register'}
+    <Row style='margin-bottom: 7px;'>
+      <Checkbox checked={isAgreeContract}>
+        <span class="agree-contract" slot='label'>我同意<a href="/">《畅盈服务协议》</a></span>
+      </Checkbox>
+    </Row>
+    <Button theme='primary' on:click={handleRegister}>
+      马上注册
+    </Button>
+  {/if}
+  {#if type === 'forget-pwd'}
+    <Button theme='primary' on:click={handleRegister}>
+      重设密码
+    </Button>
+  {/if}
   <Button on:click={onLogin}>
     回到登录
   </Button>

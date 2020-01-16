@@ -1,6 +1,5 @@
 <script lang="ts">
-  let uninitializedValue = () => {};
-  export let checked: boolean = uninitializedValue;
+  export let checked: boolean = false;
   export let label: string = '';
   function handleChage() {
     checked = !checked

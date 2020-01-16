@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Row from '../components/Row.svelte';
   import Col from '../components/Col.svelte';
   import TextField from '../components/TextField.svelte';
@@ -9,13 +10,28 @@
   export let useEmail: LoginProps['useEmail'];
   export let onForgetPwd;
   export let onRegister;
+  export let requestLogin = () => null;
 
   let account: string = '';
   let password: string = '';
   let isRemember: boolean = false;
 
+  onMount(() => {
+    if (localStorage.getItem('account')) {
+      account = localStorage.getItem('account')
+    }
+    if (localStorage.getItem('pwd')) {
+      password = localStorage.getItem('pwd')
+    }
+  })
+
   function handleLogin() {
     console.log(account, password, isRemember)
+    requestLogin()
+    if (isRemember) {
+      localStorage.setItem('account', account);
+      localStorage.setItem('pwd', password);
+    }
     isRemember = false
   }
 

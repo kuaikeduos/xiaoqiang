@@ -7,6 +7,7 @@
   export let value: string = '';
   export let span: number = 24;
   export let onInput = () => null;
+  export let onBlur = () => null;
 </script> 
 
 <div class="xq-text-field">
@@ -15,6 +16,7 @@
     <Col span={span}>
       <input 
         on:change={(e) => onInput(e.target.value)} 
+        on:blur={(e) => onBlur(e.target.value)}
         value={value} 
         placeholder={placeholder}
         type={type}
