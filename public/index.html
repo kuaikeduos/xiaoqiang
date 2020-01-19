@@ -9,7 +9,9 @@
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
-	<script src='/build/bundle.js'></script> 
+	<!-- <script src="./qrcode.min.js"></script>
+	<script src="./custom-elements.min.js"></script> -->
+	<script src='/build/qrcode.js'></script> 
 </head>
 <body>
 		<!-- <xq-qrcode
@@ -37,12 +39,20 @@
 
 		</script>
 
-		<script>
+		<!-- <script>
 			window.xqui.login({
 				logo: '//cdn.aiduoka.com/fe-ecshop/static/media/logo.18f014bd.png',
 				useEmail: true,
 				usePhone: true
 			})
+		</script> -->
+
+		<xq-video src="https://zhangzhengxu.oss-cn-beijing.aliyuncs.com/shipin1/MGMS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%8C%E6%88%90.mp4?Expires=1579265717&OSSAccessKeyId=TMP.hjEdsguvoyY2i1Rauysxi1UMjMJpKiN5JGVk4ebXnszXG49NMhTTV1jJ1MtGuKBrbDLeX9jYa18NLG6LsqLd6o8uYQY9QXHRcth53RhQX7hnGDz1ZUSRL1qEdU8Ekd.tmp&Signature=IYPDfVLIlaFpBnAQQFGPkwX8Dss%3D"></xq-video>
+		<div class="jump-b">http://cdn.kuaizhan.com/pub/static/common/qrcode.min.js</div>
+		<script>
+			document.querySelector('.jump-b').addEventListener('click', function() {
+				window.location.href = 'tbopen://m.taobao.com/tbopen/index.html?h5Url=' +  'https://s.click.taobao.com/Ssk37qv'
+			})
 		</script>
-</body>
+	</body>
 </html>

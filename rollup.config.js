@@ -22,7 +22,11 @@ const moduleConfig = {
 	'login-register': {
 		alais: 'c',
 		customElement: false
-	}, 	
+	},
+	'video': {
+		alais: 'd',
+		customElement: true
+	},
 }
 
 const mod = process.argv.slice(-1)[0].slice(2);

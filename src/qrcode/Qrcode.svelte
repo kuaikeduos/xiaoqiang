@@ -113,6 +113,8 @@
 		renderQrcode(value, size, color)
 	}
 
+	console.log('i am qrcode')
+
 </script>
 
 <style>
