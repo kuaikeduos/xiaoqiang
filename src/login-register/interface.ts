@@ -1,7 +1,7 @@
 export type LoginAction = 'login' | 'register' | 'forget-pwd';
 
 export interface LoginProps {
-  logo: string,
+  logo?: string,
   useEmail: boolean,
   action: LoginAction,
   requestRegister: (...args:any) => void,

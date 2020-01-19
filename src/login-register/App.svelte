@@ -2,7 +2,7 @@
   import Login from './Login.svelte';
   import Register from './Register.svelte';
   import { LoginProps, LoginAction } from './interface.ts';
-  import { closeImageBase } from '../constants/constant';
+  import { closeImageBase, titleMaps } from '../constants/constant';
 
   export let logo: LoginProps['logo'];
   export let useEmail: LoginProps['useEmail'];
@@ -10,26 +10,9 @@
   export let requestRegister = () => null;
   export let requestResetPwd = () => null;
   export let requestLogin = () => null;
-  export let visible: LoginProps['visible'] = true;
+  export let visible: LoginProps['visible'] = false;
 
   let _action: LoginAction = action;
-  let title = '登录'
-
-  $: {
-    switch(_action) {
-      case 'login':
-        title = '登录';
-        break;
-      case 'register':
-        title = '注册';
-        break;
-      case 'forget-pwd': 
-        title = '忘记密码';
-        break;
-      default:
-        title = '登录';
-    }
-  }
 
   function toForgetPwd() {
     _action = 'forget-pwd'
@@ -53,7 +36,7 @@
   <div class="login-box__mask" />
   <div class="login-box__wrapper">
     <section class="login-box__header">
-      {title}
+      {titleMaps[_action]}
       <img alt='x' class='box-close-icon' src={closeImageBase} on:click={closeBox} />
     </section>
     <section class="login-box__content">
@@ -111,8 +94,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-left: -204.5px;
-  margin-top: -280.5px;
+  transform: translate(-50%,-50%);
   width: 409px;
   background-color: #fff;
   box-sizing: border-box;
@@ -166,5 +148,16 @@
 
 .login-logo img {
   height: 100%;
+}
+
+
+@media screen and (max-width: 600px) {
+  .login-box__wrapper {
+    width: 298px;
+  }
+
+  .login-box__content {
+    padding: 12px 25px 25px;
+  }
 }
 </style>

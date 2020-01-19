@@ -3,7 +3,7 @@ import { joinParamsToUrl } from './tools';
 import { GET_SLIDE_CAPTCHA } from '../constants/constant';
 
 const params = {
-  bizType: 'AIDUOKA_DISTRIBUTION_WITHDROW',
+  bizType: 'KUAIZHAN_LOGIN',
   client: 'PC'
 }
 const url = joinParamsToUrl(GET_SLIDE_CAPTCHA, params)

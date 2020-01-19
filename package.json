@@ -22,6 +22,7 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
+    "@kuaizhan/kmanage-font": "^1.0.6",
     "@pyoner/svelte-ts-preprocess": "^1.2.1",
     "@smui/button": "^1.0.0-beta.19",
     "@smui/checkbox": "^1.0.0-beta.19",

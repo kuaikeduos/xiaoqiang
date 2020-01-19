@@ -17,12 +17,18 @@
   export let requestRegister = () => {};
   export let requestResetPwd = () => {};
 
+  let selected: 'phone' | 'email' = 'phone';
+  
   let account: string = '';
   let verificationCode: string = '';
   let createPassword: string = '';
   let confirmPassword: string = ''; 
-  let selected = 'phone';
-  let isAgreeContract = true;
+  let isAgreeContract: boolean = true;
+  let signKey:string = ''
+
+  let buttonText = '获取验证码'
+  let buttonDisabled = false
+  let count = -1
 
   // 选择手机或邮箱
   function handleRadioChange(value) {
@@ -79,23 +85,22 @@
     if (!isOk) {
       return
     } 
-    console.log(account, verificationCode, createPassword, confirmPassword)
     requestRegister({
-      account, 
-      verificationCode, 
-      createPassword, 
-      confirmPassword,
+      phone: account, 
+      code: verificationCode, 
+      password: createPassword, 
+      signKey: signKey,
       type: selected
     });
   }
 
   // 点击重设密码
   function handleResetPwd() {
+    console.log('reset')
     requestResetPwd({
-      account, 
-      verificationCode, 
-      createPassword, 
-      confirmPassword,
+      phone: account, 
+      code: verificationCode, 
+      password: createPassword, 
       type: selected
     })
   }
@@ -109,17 +114,29 @@
 
     slideCaptcha(async (ticket) => {
       console.log('success')
+      count = 60
+      const countDown = setInterval(() => {
+        count -= 1
+        buttonDisabled = true
+        buttonText = `${count}秒后重试`
+        if (count < 0) {
+          clearInterval(countDown)
+          buttonDisabled = false
+          buttonText = '重新获取'
+        }
+      }, 1000)
       const url = joinParamsToUrl(SEND_CAPTCHA_MESSAGE, {
         isCheckTicket: true,
         phone: account,
         templateId: 1001,
         ticket,	
-        bizType: 'AIDUOKA_DISTRIBUTION_WITHDROW'
+        bizType: 'KUAIZHAN_LOGIN'
       })
       request(url, {
         method: 'GET',
       }).then(res => {
-        console.log(res)
+        signKey = res.data.signKey
+        // console.log(res)
       })
     })
   }
@@ -146,7 +163,7 @@
       span="16"
     >
       <div slot="opt" style="padding-left: 6px;">
-        <Button theme="default-bordered" on:click={handleGetVeriCode}>获取验证码</Button>
+        <Button theme="default-bordered" on:click={handleGetVeriCode} style="margin-bottom: 0;" disabled={buttonDisabled}>{buttonText}</Button>
       </div>
     </TextField>
   {/if}
@@ -179,7 +196,7 @@
     </Button>
   {/if}
   {#if type === 'forget-pwd'}
-    <Button theme='primary' on:click={handleRegister}>
+    <Button theme='primary' on:click={handleResetPwd}>
       重设密码
     </Button>
   {/if}

@@ -1,8 +1,10 @@
 <script lang="ts">
   export let theme: 'default' | 'primary' | 'default-bordered' = 'default'
+  export let style:string = ''
+  export let disabled: boolean = false
 </script>
 
-<button on:click class={`xq-button xq-button--${theme}`}>
+<button on:click class={`xq-button xq-button--${theme}`} style={style} disabled={disabled}>
   <slot></slot>
 </button>
 
@@ -16,6 +18,12 @@
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
+    margin-bottom: 6px;
+  }
+
+  button:disabled {
+    color: #A3A3A3;
+    opacity: 0.7;
   }
 
   .xq-button--default {
@@ -34,5 +42,12 @@
     border: 1px solid #CAD3DC;
     background: #ffffff;
     color: #115BE8;
+  }
+
+  
+  @media screen and (max-width: 600px) {
+    .xq-button {
+      font-size: 13px;
+    }
   }
 </style>

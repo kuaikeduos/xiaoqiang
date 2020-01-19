@@ -17,22 +17,29 @@
   let isRemember: boolean = false;
 
   onMount(() => {
-    if (localStorage.getItem('account')) {
-      account = localStorage.getItem('account')
+    if (localStorage.getItem('xq-account')) {
+      account = localStorage.getItem('xq-account')
+      isRemember = true
     }
-    if (localStorage.getItem('pwd')) {
-      password = localStorage.getItem('pwd')
+    if (localStorage.getItem('xq-pwd')) {
+      password = localStorage.getItem('xq-pwd')
+      isRemember = true
     }
   })
 
   function handleLogin() {
-    console.log(account, password, isRemember)
-    requestLogin()
+    requestLogin({
+      phone: account,
+      password,
+    })
     if (isRemember) {
-      localStorage.setItem('account', account);
-      localStorage.setItem('pwd', password);
+      localStorage.setItem('xq-account', account);
+      localStorage.setItem('xq-pwd', password);
+    } else {
+      localStorage.setItem('xq-account', account);
+      localStorage.setItem('xq-pwd', password);
     }
-    isRemember = false
+
   }
 
   const accountLabel = useEmail ? '手机号/邮箱' : '手机号';
