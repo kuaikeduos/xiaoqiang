@@ -5,9 +5,12 @@ let app: any;
 function create(props: LoginProps) {
 
 	if (app) {
-		// TODO destory
-		console.log('rendered')
-		return
+    // destroy
+    console.log('rendered')
+    const loginRegister = document.querySelector('.login-box');
+    if (loginRegister) {
+      document.body.removeChild(loginRegister)
+    }
 	}
 
 	app = new App({

@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from "rollup-plugin-typescript2";
 
+
 const svelteOptions = require("./svelte.config");
 
 const production = !process.env.ROLLUP_WATCH;
@@ -84,7 +85,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+    !production && livereload('public'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
