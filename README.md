@@ -123,7 +123,7 @@ textfield/button/checkbox 三个一用就是110kb，吓死人, 我们不需要�
 
 ## code style
 
-- hard to [shadow dom](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/%E5%BD%B1%E5%AD%90_DOM) and [custom element](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
+- hard to learn [shadow dom](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/%E5%BD%B1%E5%AD%90_DOM) and [custom element](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
 - state and inner value should be camelCase
 - typed for every value
 - BEM for class name
