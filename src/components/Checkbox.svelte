@@ -1,3 +1,4 @@
+<svelte:options tag="xq-checkbox" />
 <script lang="ts">
   export let checked: boolean = false;
   export let label: string = '';

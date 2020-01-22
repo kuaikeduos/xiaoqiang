@@ -1,3 +1,4 @@
+<svelte:options tag="xq-icon" />
 <script lang="ts">
 import '@kuaizhan/kmanage-font'
 export let name: string

@@ -73,8 +73,42 @@ npm install --save @webcomponents/custom-elements @webcomponents/shadydom
 
 cdn
 
-- [custom-elements](https://yumkuaizhan-1252921496.file.myqcloud.com/third/custom-elements.min.js)
-- [shadydom](https://yumkuaizhan-1252921496.file.myqcloud.com/third/shadydom.min.js)
+- [custom-elements](https://cdn.kuaizhan.com/xiaoqiang/base/custom-elements.min.js)
+- [shadydom](https://cdn.kuaizhan.com/xiaoqiang/base/shadydom.min.js)
+
+load-polyfill(因为用到了 document.body 必须放在body里(IE测试结果))
+
+```js
+(function (callback) {
+  function loadJs(src, callback) {
+    var container = document.body;
+    var script = document.createElement("script");
+    script.setAttribute("type", "text/javascript");
+    script.src = src;
+    container.appendChild(script);
+    script.onload = function() {
+      callback && callback()
+    }
+  }
+
+  if (window.customElements) {
+    callback()
+  } else {
+    loadJs(
+      // source map 文件没有会导致IE/edge浏览器加载失败(fuck 浪费了2个小时)
+      // 文件里这行就别留着了 //# sourceMappingURL=shadydom.min.js.map
+      '//cdn.kuaizhan.com/xiaoqiang/base/shadydom.min.js',
+      function () {
+        loadJs('//cdn.kuaizhan.com/xiaoqiang/base/custom-elements.min.js', callback)
+      }
+    )
+  }
+
+})(function () {
+  /* code here */
+})
+```
+
 
 ## smui(弃用)
 
@@ -86,3 +120,17 @@ textfield/button/checkbox 三个一用就是110kb，吓死人, 我们不需要�
 ## 每个不能超过50kb
 
 项目性质决定对性能的要求比较高，牺牲功能性
+
+## code style
+
+- hard to [shadow dom](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/%E5%BD%B1%E5%AD%90_DOM) and [custom element](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
+- state and inner value should be camelCase
+- typed for every value
+- BEM for class name
+- every component should compile to web component
+- so every shoud be used by web component 
+  - components props is undeline_name, becasue web component no case sensitivity
+  - xq-col for Col component `<xq-col>duck</xq-col></xq-col>`
+  - component `style` prop to be `styles`
+- use less on the component root like `with:50%`, bescause it relative to the component root, not relative to father component
+- but if you still want to use, you need set style on `:host` [a question](https://stackoverflow.com/questions/25193964/how-can-i-have-a-web-components-width-and-height-be-inherited-by-its-children)

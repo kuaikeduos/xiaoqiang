@@ -1,3 +1,4 @@
+<svelte:options tag="xq-textfield" />
 <script lang="ts">
   import Row from './Row.svelte';
   import Col from './Col.svelte';
@@ -5,27 +6,20 @@
   export let placeholder:string = '请输入';
   export let type:string = '';
   export let value: string = '';
-  export let span: number = 24;
-  export let onInput = () => null;
-  export let onBlur = () => null;
+  export let on_input;
+
 </script> 
 
 <div class="xq-text-field">
   <div class="text-field__label">{label}</div>
-  <Row>
-    <Col span={span}>
-      <input 
-        on:change={(e) => onInput(e.target.value)} 
-        on:blur={(e) => onBlur(e.target.value)}
-        value={value} 
-        placeholder={placeholder}
-        type={type}
-      />
-    </Col>
-    <Col span={24-span}>
-      <slot name="opt"></slot>
-    </Col>
-  </Row>
+  <input
+    value={value}
+    on:input={(e) => {
+      on_input(e.target.value)
+    }}
+    placeholder={placeholder}
+    type={type}
+  />
 </div>
 
 <style>

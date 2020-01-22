@@ -1,3 +1,4 @@
+<svelte:options tag="xq-login-register" />
 <script lang="ts">
   import Login from './Login.svelte';
   import Register from './Register.svelte';
@@ -6,7 +7,7 @@
 
   export let logo: LoginProps['logo'];
   export let useEmail: LoginProps['useEmail'];
-  export let action: LoginProps['action'] = 'register';
+  export let action: LoginProps['action'] = 'login';
   export let requestRegister = () => null;
   export let requestResetPwd = () => null;
   export let requestLogin = () => null;
@@ -54,14 +55,14 @@
       />
     {/if}
     {#if _action === 'register'}
-      <Register
+      <xq-register
         useEmail={useEmail}
         onLogin={toLogin}
         requestRegister={requestRegister}
       />
     {/if}
     {#if _action === 'forget-pwd'}
-      <Register
+      <xq-register
         useEmail={useEmail}
         onLogin={toLogin}
         requestResetPwd={requestResetPwd}

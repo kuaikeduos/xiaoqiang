@@ -22,7 +22,7 @@ const moduleConfig = {
 	},
 	'login-register': {
 		alais: 'c',
-		customElement: false
+		customElement: true
 	},
 	'video': {
 		alais: 'd',

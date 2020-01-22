@@ -1,6 +1,7 @@
+<svelte:options tag="xq-button" />
 <script lang="ts">
   export let theme: 'default' | 'primary' | 'default-bordered' = 'default'
-  export let style:string = ''
+  export let style: string = ''
   export let disabled: boolean = false
 </script>
 

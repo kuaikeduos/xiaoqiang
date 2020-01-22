@@ -1,3 +1,4 @@
+<svelte:options tag="xq-register" />
 <script lang="ts">
   import Row from '../components/Row.svelte';
   import Col from '../components/Col.svelte';

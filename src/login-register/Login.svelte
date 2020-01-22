@@ -1,3 +1,4 @@
+<svelte:options tag="xq-login" />
 <script lang="ts">
   import { onMount } from 'svelte';
   import Row from '../components/Row.svelte';
@@ -46,33 +47,32 @@
 </script>
 
 <div class="login-action">
-  <TextField
+  <xq-textfield
     value={account}
     label={accountLabel}
-    onInput={(value) => { account = value }}
-  />
+    on_input={value => account = value}
+  ></xq-textfield>
   <br />
-  <TextField
+  <xq-textfield
     value={password}
     label="密码"
     type="password"
-    onInput={(value) => { password = value }}
-  />
+  ></xq-textfield>
   <br />
-  <Row style='margin-bottom: 7px;'>
-    <Col span={12}>
-      <Checkbox bind:checked={isRemember} label='记住我' />
-    </Col>
-    <Col span={12}>
+  <xq-row styles='margin-bottom: 7px;'>
+    <xq-col span={12}>
+      <xq-checkbox checked={isRemember} label='记住我' />
+    </xq-col>
+    <xq-col span={12}>
       <a on:click={onForgetPwd} href="javascript:void();" class="login__forget">忘记密码?</a>
-    </Col>
-  </Row>
-  <Button theme='primary' on:click={handleLogin}>
+    </xq-col>
+  </xq-row>
+  <xq-button theme='primary' on:click={handleLogin}>
     立即登录
-  </Button>
-  <Button on:click={onRegister}>
+  </xq-button>
+  <xq-button on:click={onRegister}>
     马上注册
-  </Button>
+  </xq-button>
 </div>
 
 <style>

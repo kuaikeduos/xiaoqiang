@@ -1,3 +1,4 @@
+<svelte:options tag="xq-radio" />
 <script lang="ts">
   export let value: string = '';
   export let label: string = '';

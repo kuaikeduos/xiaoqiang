@@ -1,3 +1,4 @@
+<svelte:options tag="xq-message" />
 <script lang="ts">
   import Icon from './Icon.svelte'
   export let type: 'error' | 'success' | 'info' = 'success';
