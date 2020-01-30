@@ -1,0 +1,26 @@
+{
+  "name": "text-field",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "konglx <konglx90@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://npm.kuaizhan.sohuno.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.icloudfuture.com:kuaizhan/xiaoqiang.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}

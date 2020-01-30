@@ -1,11 +1,11 @@
 <svelte:options tag="xq-login" />
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Row from '../components/Row.svelte';
-  import Col from '../components/Col.svelte';
-  import TextField from '../components/TextField.svelte';
-  import Button from '../components/Button.svelte';
-  import Checkbox from '../components/Checkbox.svelte';
+  import Row from '@xqui/row';
+  import Col from '@xqui/col';
+  import TextField from '@xqui/text-field';
+  import Button from '@xqui/button';
+  import Checkbox from '@xqui/checkbox';
   import { LoginProps } from './interface.ts';
 
   export let useEmail: LoginProps['useEmail'];

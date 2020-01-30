@@ -1,16 +1,16 @@
 <svelte:options tag="xq-register" />
 <script lang="ts">
-  import Row from '../components/Row.svelte';
-  import Col from '../components/Col.svelte';
-  import TextField from '../components/TextField.svelte';
-  import Button from '../components/Button.svelte';
-  import Checkbox from '../components/Checkbox.svelte';
-  import Radio from '../components/Radio.svelte';
+  import Row from '@xqui/row';
+  import Col from '@xqui/col';
+  import TextField from '@xqui/text-field';
+  import Button from '@xqui/button';
+  import Checkbox from '@xqui/checkbox';
+  import Radio from '@xqui/radio';
   import { LoginProps } from './interface.ts';
-  import slideCaptcha from '../utils/slideCaptcha';
-  import request from '../utils/request';
-  import { SEND_CAPTCHA_MESSAGE } from '../constants/constant';
-  import { joinParamsToUrl} from '../utils/tools'
+  import slideCaptcha from 'src/utils/slideCaptcha';
+  import request from 'src/utils/request';
+  import { SEND_CAPTCHA_MESSAGE } from 'src/constants/constant';
+  import { joinParamsToUrl} from 'src/utils/tools'
 
   export let useEmail: LoginProps['useEmail'];
   export let type: 'register' | 'forget-pwd' = 'register'
@@ -145,31 +145,31 @@
 
 <div class="register-action">
   {#if useEmail}
-    <Row style='margin-bottom: 14px;'>
-      <Radio value='phone' checked={selected === 'phone'} label='通过手机' onChange={() => handleRadioChange('phone')} />
-      <Radio value='email'  checked={selected === 'email'} label='通过邮箱' onChange={() => handleRadioChange('email')} />
-    </Row>
+    <xq-row style='margin-bottom: 14px;'>
+      <xq-radio value='phone' checked={selected === 'phone'} label='通过手机' onChange={() => handleRadioChange('phone')} />
+      <xq-radio value='email' checked={selected === 'email'} label='通过邮箱' onChange={() => handleRadioChange('email')} />
+    </xq-row>
   {/if}
-    <TextField
+    <xq-text-field
       value={account}
       onInput={(value) => { account = value }}
       label={selected === 'phone' ? '手机号' : '邮箱'}
       placeholder={`请输入${selected === 'phone' ? '手机号' : '邮箱'}`}
     />
   {#if selected === 'phone'}
-    <TextField
+    <xq-text-field
       value={verificationCode}
       onInput={(value) => { verificationCode = value }}
       label="验证码"
       span="16"
     >
       <div slot="opt" style="padding-left: 6px;">
-        <Button theme="default-bordered" on:click={handleGetVeriCode} style="margin-bottom: 0;" disabled={buttonDisabled}>{buttonText}</Button>
+        <xq-button theme="default-bordered" on:click={handleGetVeriCode} style="margin-bottom: 0;" disabled={buttonDisabled}>{buttonText}</xq-button>
       </div>
-    </TextField>
+    </xq-text-field>
   {/if}
   {#if type === 'register' || (type === 'forget-pwd' && selected === 'phone')}
-  <TextField
+  <xq-text-field
     value={createPassword}
     onInput={(value) => { createPassword = value }}
     onBlur={checkPasswords}
@@ -177,7 +177,7 @@
     type="password"
     placeholder='请输入密码'
   />
-  <TextField
+  <xq-text-field
     value={confirmPassword}
     onInput={(value) => { confirmPassword = value }}
     onBlur={checkPasswords}
@@ -187,23 +187,23 @@
   />
   {/if}
   {#if type === 'register'}
-    <Row style='margin-bottom: 7px;'>
-      <Checkbox checked={isAgreeContract}>
+    <xq-row style='margin-bottom: 7px;'>
+      <xq-checkbox checked={isAgreeContract}>
         <span class="agree-contract" slot='label'>我同意<a href="/">《畅盈服务协议》</a></span>
-      </Checkbox>
-    </Row>
-    <Button theme='primary' on:click={handleRegister}>
+      </xq-checkbox>
+    </xq-row>
+    <xq-button theme='primary' on:click={handleRegister}>
       马上注册
-    </Button>
+    </xq-button>
   {/if}
   {#if type === 'forget-pwd'}
-    <Button theme='primary' on:click={handleResetPwd}>
+    <xq-button theme='primary' on:click={handleResetPwd}>
       重设密码
-    </Button>
+    </xq-button>
   {/if}
-  <Button on:click={onLogin}>
+  <xq-button on:click={onLogin}>
     回到登录
-  </Button>
+  </xq-button>
 </div>
 
 <style>

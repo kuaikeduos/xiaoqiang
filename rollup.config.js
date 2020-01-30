@@ -5,11 +5,13 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from "rollup-plugin-typescript2";
-
+import alias from '@rollup/plugin-alias';
+import path from 'path';
 
 const svelteOptions = require("./svelte.config");
 
 const production = !process.env.ROLLUP_WATCH;
+const projectRootDir = path.resolve(__dirname);
 
 const moduleConfig = {
 	'suspend-wiki': {
@@ -34,7 +36,7 @@ const mod = process.argv.slice(-1)[0].slice(2);
 console.log(mod, 'module')
 
 export default {
-	input: `src/${mod}/main.ts`,
+	input: `packages/${mod}/lib/index.js`,
 	output: {
 		sourcemap: true,
 		format: 'iife',
@@ -42,6 +44,13 @@ export default {
 		file: `public/build/${production ? mod : 'bundle'}.js`
 	},
 	plugins: [
+		alias({
+      resolve: ['.js'], //optional, by default this will just look for .js files or folders
+      entries:[
+				{ find: /^@xqui\/(.*)/, replacement: path.resolve(projectRootDir, 'packages/$1/lib/')},
+				{ find: 'src', replacement: path.resolve(projectRootDir, 'src')},
+      ]
+    }),
 		svelte({
 			...svelteOptions,
 			// enable run-time checks when not in production

@@ -1,13 +1,10 @@
 <svelte:options tag="xq-textfield" />
 <script lang="ts">
-  import Row from './Row.svelte';
-  import Col from './Col.svelte';
-  export let label:string = '';
-  export let placeholder:string = '请输入';
-  export let type:string = '';
+  export let label: string = '';
+  export let placeholder: string = '请输入';
+  export let type: string = '';
   export let value: string = '';
   export let on_input;
-
 </script> 
 
 <div class="xq-text-field">

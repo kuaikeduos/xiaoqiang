@@ -3,7 +3,7 @@
   import Login from './Login.svelte';
   import Register from './Register.svelte';
   import { LoginProps, LoginAction } from './interface.ts';
-  import { closeImageBase, titleMaps } from '../constants/constant';
+  import { closeImageBase, titleMaps } from 'src/constants/constant';
 
   export let logo: LoginProps['logo'];
   export let useEmail: LoginProps['useEmail'];
