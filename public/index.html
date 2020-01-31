@@ -9,58 +9,9 @@
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
-	<!-- <script src="./build/shadydom.min.js"></script>
-	<script src="./build/custom-elements.min.js"></script> -->
-	<script src="./build/bundle.js"></script>
+
 </head>
 <body>
-		<!-- <xq-qrcode
-			color='yellow'
-			class='qrcode'
-			value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" size=200></xq-qrcode> -->
-		<div class='qrcode'>
-				<xq-qrcode id="async-change" value="xxxx" size=110></xq-qrcode>
-		</div>
-		<style>
-			.qrcode {
-				margin-top: 32px;
-			}
-		</style>
-		<script>
-
-				// TODO a bug attributeChangedCallback
-				// attributeChangedCallback(attrName, oldVal, newVal) {
-        //     console.log(`attributeChangedCallback-change ${attrName} from ${oldVal} to ${newVal}`)
-        // }
-				setTimeout(function() {
-					// document.querySelector('#async-change').setAttribute('value', 'https://passport.kuaizhan.com/main/login/wx-scan-login?payload=eyJzaXRlX2lkIjogNTMwNjY0OTQ1MSwgImlkIjogIjE2MjY5MTU0NTg5YzRiZGQ5MDMzYzQ4NWY1M2Y4NmM2In0=')
-					document.querySelector('#async-change').setAttribute('color', 'blue')
-				}, 2000)
-
-		</script>
-
-		<!-- <script>
-			window.xqui.login({
-				// logo: '//cdn.aiduoka.com/fe-ecshop/static/media/logo.18f014bd.png',
-				useEmail: false,
-        usePhone: true,
-			})
-		</script> -->
-
-		<xq-video src="https://zhangzhengxu.oss-cn-beijing.aliyuncs.com/shipin1/MGMS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%8C%E6%88%90.mp4?Expires=1579265717&OSSAccessKeyId=TMP.hjEdsguvoyY2i1Rauysxi1UMjMJpKiN5JGVk4ebXnszXG49NMhTTV1jJ1MtGuKBrbDLeX9jYa18NLG6LsqLd6o8uYQY9QXHRcth53RhQX7hnGDz1ZUSRL1qEdU8Ekd.tmp&Signature=IYPDfVLIlaFpBnAQQFGPkwX8Dss%3D"></xq-video>
-		<div class="jump-b">https://sokosoko.kuaizhan.com/clubpc/topics/XVzsS8C4xwARPN_t#!/comments/0</div>
-		<script>
-			document.querySelector('.jump-b').addEventListener('click', function() {
-				window.location.href = 'tbopen://m.taobao.com/tbopen/index.html?h5Url=' +  'https://m.tb.cn/h.VbI1aRE'
-			})
-		</script>
-		<!-- <script src='/build/p-qrcode.js'></script>  -->
-
-		<xq-login-register
-			logo="./favicon.png"
-			action="login"
-			visible="true"
-		>
-		</xq-login-register>
-	</body>
+</body>
+<script src="./build/bundle.js"></script>
 </html>

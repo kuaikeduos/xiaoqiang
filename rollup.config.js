@@ -33,15 +33,22 @@ const moduleConfig = {
 }
 
 const mod = process.argv.slice(-1)[0].slice(2);
-console.log(mod, 'module')
+
+console.info(mod, 'module')
+
+const inputFile = production ? 'lib' : 'example';
+const outputFile = production ?
+	`packages/${mod}/dist/index.js`: 
+	`public/build/bundle.js` ;
+
 
 export default {
-	input: `packages/${mod}/lib/index.js`,
+	input: `packages/${mod}/${inputFile}/index.js`,
 	output: {
-		sourcemap: true,
+		sourcemap: !production,
 		format: 'iife',
 		name: 'app',
-		file: `public/build/${production ? mod : 'bundle'}.js`
+		file: outputFile
 	},
 	plugins: [
 		alias({
