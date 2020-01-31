@@ -62,7 +62,7 @@ export default {
 			...svelteOptions,
 			// enable run-time checks when not in production
 			dev: !production,
-			customElement: moduleConfig[mod].customElement,
+			customElement: moduleConfig[mod] ? moduleConfig[mod].customElement : true,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			// css: css => {

@@ -1,11 +1,16 @@
 # `checkbox`
 
-> TODO: description
+> A web component checkbox
 
 ## Usage
 
-```
-const checkbox = require('checkbox');
+```js
+import React from 'react';
+import '@xqui/qrcode';
 
-// TODO: DEMONSTRATE API
+function Foo() {
+  return (
+    <xq-checkbox checked={true} label='记住我' />
+  )
+}
 ```

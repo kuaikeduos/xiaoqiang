@@ -1,7 +1,7 @@
 {
   "name": "@xqui/video",
-  "version": "1.0.2",
-  "description": "> TODO: description",
+  "version": "1.0.3",
+  "description": "> A web component video",
   "author": "konglx <konglx90@gmail.com>",
   "homepage": "",
   "license": "ISC",
