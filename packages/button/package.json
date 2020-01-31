@@ -1,20 +1,23 @@
 {
   "name": "@xqui/button",
-  "version": "1.0.0",
-  "description": "> TODO: description",
+  "version": "1.0.1",
+  "description": "> A Web component for button",
   "author": "konglx <konglx90@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib",
-    "test": "__tests__"
+    "test": "__tests__",
+    "dist": "dist"
   },
   "files": [
-    "lib"
+    "lib",
+    "dist"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "repository": {
     "type": "git",
