@@ -1,0 +1,29 @@
+{
+  "name": "@xqui/col",
+  "version": "1.0.1",
+  "description": "> A web component col",
+  "author": "konglx <konglx90@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__",
+    "dist": "dist"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.icloudfuture.com:kuaizhan/xiaoqiang.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}

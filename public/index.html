@@ -9,40 +9,9 @@
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
-	<script src='/build/bundle.js'></script> 
+
 </head>
 <body>
-		<!-- <xq-qrcode
-			color='yellow'
-			class='qrcode'
-			value="http://www.ruanyifeng.com/blog/2019/08/web_components.html" size=200></xq-qrcode> -->
-		<div class='qrcode'>
-				<xq-qrcode id="async-change" value="xxxx" size=110></xq-qrcode>
-		</div>
-		<style>
-			.qrcode {
-				margin-top: 32px;
-			}
-		</style>
-		<script>
-
-				// TODO a bug attributeChangedCallback
-				// attributeChangedCallback(attrName, oldVal, newVal) {
-        //     console.log(`attributeChangedCallback-change ${attrName} from ${oldVal} to ${newVal}`)
-        // }
-				setTimeout(function() {
-					// document.querySelector('#async-change').setAttribute('value', 'https://passport.kuaizhan.com/main/login/wx-scan-login?payload=eyJzaXRlX2lkIjogNTMwNjY0OTQ1MSwgImlkIjogIjE2MjY5MTU0NTg5YzRiZGQ5MDMzYzQ4NWY1M2Y4NmM2In0=')
-					document.querySelector('#async-change').setAttribute('color', 'blue')
-				}, 2000)
-
-		</script>
-
-		<script>
-			window.xqui.login({
-				logo: '//cdn.aiduoka.com/fe-ecshop/static/media/logo.18f014bd.png',
-				useEmail: true,
-				usePhone: true
-			})
-		</script>
 </body>
+<script src="./build/bundle.js"></script>
 </html>

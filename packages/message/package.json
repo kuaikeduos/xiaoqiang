@@ -1,0 +1,26 @@
+{
+  "name": "@xqui/message",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "konglx <konglx90@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/message.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.icloudfuture.com:kuaizhan/xiaoqiang.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}

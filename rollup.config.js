@@ -5,10 +5,14 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from "rollup-plugin-typescript2";
+import alias from '@rollup/plugin-alias';
+import replace from './rollup-plugins/replace';
+import path from 'path';
 
 const svelteOptions = require("./svelte.config");
 
 const production = !process.env.ROLLUP_WATCH;
+const projectRootDir = path.resolve(__dirname);
 
 const moduleConfig = {
 	'suspend-wiki': {
@@ -21,27 +25,45 @@ const moduleConfig = {
 	},
 	'login-register': {
 		alais: 'c',
-		customElement: false
-	}, 	
+		customElement: true
+	},
+	'video': {
+		alais: 'd',
+		customElement: true
+	},
 }
 
 const mod = process.argv.slice(-1)[0].slice(2);
-console.log(mod, 'module')
+
+console.info(mod, 'module')
+
+const inputFile = production ? 'lib' : 'example';
+const outputFile = production ?
+	`packages/${mod}/dist/index.js`: 
+	`public/build/bundle.js` ;
+
 
 export default {
-	input: `src/${mod}/main.ts`,
+	input: `packages/${mod}/${inputFile}/index.js`,
 	output: {
-		sourcemap: true,
+		sourcemap: !production,
 		format: 'iife',
 		name: 'app',
-		file: `public/build/${production ? mod : 'bundle'}.js`
+		file: outputFile
 	},
 	plugins: [
+		alias({
+      resolve: ['.js'], //optional, by default this will just look for .js files or folders
+      entries:[
+				{ find: /^@xqui\/(.*)/, replacement: path.resolve(projectRootDir, 'packages/$1/lib/')},
+				{ find: 'src', replacement: path.resolve(projectRootDir, 'src')},
+      ]
+    }),
 		svelte({
 			...svelteOptions,
 			// enable run-time checks when not in production
 			dev: !production,
-			customElement: moduleConfig[mod].customElement,
+			customElement: moduleConfig[mod] ? moduleConfig[mod].customElement : true,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			// css: css => {
@@ -73,6 +95,7 @@ export default {
 		}),
 		commonjs(),
 		typescript(),
+		replace(),  // replace __$$self => $$self
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
@@ -80,7 +103,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+    !production && livereload('public'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
