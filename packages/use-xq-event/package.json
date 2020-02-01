@@ -1,23 +1,20 @@
 {
-  "name": "@xqui/row",
-  "version": "1.0.1",
-  "description": "> row，与 col 配合使用",
+  "name": "use-xq-event",
+  "version": "1.0.0",
+  "description": "> TODO: description",
   "author": "konglx <konglx90@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/use-xq-event.js",
   "directories": {
     "lib": "lib",
-    "test": "__tests__",
-    "dist": "dist"
+    "test": "__tests__"
   },
   "files": [
-    "lib",
-    "dist"
+    "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "registry": "http://npm.kuaizhan.sohuno.com/"
   },
   "repository": {
     "type": "git",

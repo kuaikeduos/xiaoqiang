@@ -1,16 +1,40 @@
 <svelte:options tag="xq-button" />
 <script lang="ts">
+
+	import { createEventDispatcher, onMount } from 'svelte';
+
   export let theme: 'default' | 'primary' | 'default-bordered' = 'default'
   export let style: string = ''
   export let disabled: boolean = false
+
+  const dispatch = createEventDispatcher();
+
+  let button;
+
+  function handleClick() {
+    // 创建并分发事件
+    const event = new CustomEvent(
+      "xq-click",
+      {"detail": { target: button }}
+    )
+    // @ts-ignore
+    __$$self.dispatchEvent(event)
+  }
+
 </script>
 
-<button on:click class={`xq-button xq-button--${theme}`} style={style} disabled={disabled}>
+<button
+  bind:this={button}
+  on:click={handleClick}
+  class={`xq-button xq-button--${theme}`}
+  style={style}
+  disabled={disabled}
+>
   <slot></slot>
 </button>
 
 <style>
-  .xq-button {
+  :host {
     font-size: 14px;
     width: 100%;
     border-radius: 3px;
@@ -22,7 +46,7 @@
     margin-bottom: 6px;
   }
 
-  button:disabled {
+  :host:disabled {
     color: #A3A3A3;
     opacity: 0.7;
   }

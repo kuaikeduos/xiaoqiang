@@ -3,11 +3,11 @@
   export let value: string = '';
   export let label: string = '';
   export let checked: boolean;
-  export let onChange: () => void;
+  export let on_change: () => void;
 </script>
 
 <div 
-  on:click={onChange}
+  on:click={on_change}
   value={value}
   class={`xq-radio ${checked ? 'xq-radio-checked' : ''}`}
 >

@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from "rollup-plugin-typescript2";
 import alias from '@rollup/plugin-alias';
+import replace from './rollup-plugins/replace';
 import path from 'path';
 
 const svelteOptions = require("./svelte.config");
@@ -94,6 +95,7 @@ export default {
 		}),
 		commonjs(),
 		typescript(),
+		replace(),  // replace __$$self => $$self
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

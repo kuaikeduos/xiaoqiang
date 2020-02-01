@@ -110,6 +110,33 @@ load-polyfill(因为用到了 document.body 必须放在body里(IE测试结果))
 ```
 
 
+## React-useXqEvent
+
+```tsx
+import React, { useState, useRef, useEffect } from "react";
+import useXqEvent from '../lib/use-xq-event'
+
+function ReactXqButtonDemo() {
+  const [theme, setTheme] = useState('default');
+  const button = useRef();
+
+  useXqEvent(button, [{
+    event: 'xq-click',
+    handler: function() {
+      console.log('click button')
+      setTheme('primary')
+    }
+  }])
+
+  return (
+    // @ts-ignore
+    <xq-button ref={button} theme={theme}>hhh</xq-button>
+  )
+}
+
+export default ReactXqButtonDemo
+```
+
 ## smui(弃用)
 
 - [svelte-material-ui](https://github.com/hperrin/svelte-material-ui)
