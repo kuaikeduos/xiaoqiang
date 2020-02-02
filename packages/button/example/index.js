@@ -7,6 +7,9 @@ document.body.innerHTML = `
 `
 
 const button = document.querySelector('xq-button');
-button.addEventListener('xq-click', function() {
+// native
+button.addEventListener('click', function() {
   console.log('button click')
 });
+
+// xq events

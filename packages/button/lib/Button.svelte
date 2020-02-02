@@ -14,7 +14,7 @@
   function handleClick() {
     // 创建并分发事件
     const event = new CustomEvent(
-      "xq-click",
+      "xq:click",
       {"detail": { target: button }}
     )
     // @ts-ignore

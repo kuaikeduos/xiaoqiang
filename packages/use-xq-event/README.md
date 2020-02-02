@@ -13,7 +13,7 @@ function ReactXqButtonDemo() {
   const button = useRef();
 
   useXqEvent(button, [{
-    event: 'xq-click',
+    event: 'xq:click',
     handler: function() {
       console.log('click button')
       setTheme('primary')

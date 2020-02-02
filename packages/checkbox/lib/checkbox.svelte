@@ -2,14 +2,19 @@
 <script lang="ts">
   export let checked: boolean = false;
   export let label: string = '';
-  function handleChage() {
+  function handleChange() {
     checked = !checked
+
+    // @ts-ignore
+    __$$self.dispatchEvent(new CustomEvent('xq:change', {
+      detail: checked
+    }))
   }
 </script>
 
 <div class='xq-checkbox-wrapper'>
   <span
-    on:click={handleChage}
+    on:click={handleChange}
     class={`xq-checkbox ${checked ? 'xq-checkbox-checked' : ''}`}
   >
     <input

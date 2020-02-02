@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 interface XqEventHandler {
-  event: 'xq-click',
+  event: 'xq:click',
   handler: (e: any) => void
 }
 function useXqEvent(

@@ -121,7 +121,7 @@ function ReactXqButtonDemo() {
   const button = useRef();
 
   useXqEvent(button, [{
-    event: 'xq-click',
+    event: 'xq:click',
     handler: function() {
       console.log('click button')
       setTheme('primary')
@@ -135,6 +135,37 @@ function ReactXqButtonDemo() {
 }
 
 export default ReactXqButtonDemo
+```
+
+## XqEvent
+
+### __$$self
+
+在`svelte`的组件内部无法获取 `svelte` 编译后的 `customElement` 的 `this`(`$$self`)
+
+于是需要采用特殊的写法 __$$self 来获取该组件的的instance
+
+```ts
+// rollup plugin <<replace>> will replace __$$self to $$self
+__$$self.dispatchEvent(new CustomEvent('xq:change', { detail: false }))
+```
+
+### Event define
+
+以`:`为分隔符来分隔不同部分, 使用`-`来分隔部分内部的名称
+
+```sh
+global-prefix:[component-name:]event-name
+
+# custom
+xq:change
+xq:click
+xq:login
+xq:register
+xq:play
+
+# special
+xq:qrcode:render-done
 ```
 
 ## smui(弃用)
