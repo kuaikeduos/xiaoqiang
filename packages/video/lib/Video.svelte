@@ -3,8 +3,9 @@
 
   import { onMount, onDestroy } from 'svelte';
 
-  export let src = '//pic.kuaizhan.com/g3/7e/6a/6b03-b5ba-44db-98a9-7945d3de752176.mp4';
+  export let src = '';
   export let poster;
+  export let height = 200;
 
   let video;
 
@@ -38,7 +39,7 @@
     poster={poster}
     controls 
     loop=""
-    style="object-fit:cover;"
+    style={`object-fit:cover;height:${height}px`}
   >
   你的浏览器不支持HTML5视频。
   </video>
@@ -48,7 +49,6 @@
 <style>
 video {
   width: 100%;
-  height: 200px;
 }
 </style>
 
